@@ -29,8 +29,8 @@ namespace Entra21.CSharp.ClinicaVeterinaria.Aplicacao.Controllers
         [HttpGet]
 
         public IActionResult Registrar (
-            [FromQuery] string nome,
-            [FromQuery] string especie)
+            [FromQuery()] string nome,
+            [FromQuery()] string especie)
         {
             return RedirectToAction("Index");
         }
