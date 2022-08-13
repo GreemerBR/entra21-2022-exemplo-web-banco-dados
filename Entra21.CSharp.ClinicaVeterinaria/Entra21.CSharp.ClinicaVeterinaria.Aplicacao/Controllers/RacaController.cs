@@ -7,15 +7,14 @@ namespace Entra21.CSharp.ClinicaVeterinaria.Aplicacao.Controllers
     // Dois pontos mais pra frente é sobre Herença
     public class RacaController : Controller
     {
-
-        private RacaServico racaServico;
+        private readonly RacaServico _racaServico;
 
         /* Construtor: objetivo - construir o objeto de RacaController,
          com o mínimo necessário para o funcionamento correto */
 
         public RacaController(ClinicaVeterinariaContexto contexto)
         {
-            racaServico = new RacaServico(contexto);            
+            _racaServico = new RacaServico(contexto);            
         }
 
         /// <summary>
@@ -24,15 +23,18 @@ namespace Entra21.CSharp.ClinicaVeterinaria.Aplicacao.Controllers
         /// <returns>Retorna a página html com as raças</returns>
         [Route("/raca")]
         [HttpGet]
-
         public IActionResult ObterTodos()
         {
+            var racas = _racaServico.ObterTodos();
+
+            // Passar informação do C# para o HTML
+            ViewBag.Racas = racas;
+
             return View("Index");
         }
 
         [Route("/raca/cadastrar")]
         [HttpGet]
-
         public IActionResult Cadastrar()
         {
             return View();
@@ -40,12 +42,11 @@ namespace Entra21.CSharp.ClinicaVeterinaria.Aplicacao.Controllers
 
         [Route("/raca/registrar")]
         [HttpGet]
-
         public IActionResult Registrar (
             [FromQuery] string nome,
             [FromQuery] string especie)
         {
-            racaServico.Cadastrar(nome, especie);
+            _racaServico.Cadastrar(nome, especie);
 
             return RedirectToAction("Index");
         }
