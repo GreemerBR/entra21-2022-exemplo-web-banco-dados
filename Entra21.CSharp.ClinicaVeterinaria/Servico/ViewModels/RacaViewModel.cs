@@ -3,7 +3,6 @@
     public class RacaViewModel
     {
         public string Nome { get; set; }
-
         public string Especie { get; set; }
     }
 }
