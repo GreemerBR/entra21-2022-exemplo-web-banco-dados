@@ -37,10 +37,11 @@ namespace Entra21.CSharp.ClinicaVeterinaria.Aplicacao.Controllers
         [HttpGet("/raca/cadastrar")]
         public IActionResult Cadastrar()
         {
-
             var especies = ObterEspecies();
 
             ViewBag.Especies = especies;
+
+            var racaCadastrarViewModel = new RacaCadastrarViewModel();
 
             return View();
         }
@@ -49,6 +50,13 @@ namespace Entra21.CSharp.ClinicaVeterinaria.Aplicacao.Controllers
         public IActionResult Cadastrar (
             [FromForm] RacaCadastrarViewModel racaCadastrarViewModel)
         {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Especies = ObterEspecies();
+
+                return View(racaCadastrarViewModel);
+            }
+
             _racaServico.Cadastrar(racaCadastrarViewModel);
 
             return RedirectToAction("Index");
