@@ -19,7 +19,8 @@ namespace Entra21.CSharp.ClinicaVeterinaria.Repositorio.BancoDados
             // 3ª etapa migration: Registrar o mapeamento
             modelBuilder.ApplyConfiguration(new RacaMapeamento());
             /* 4ª etapa migration: Gerar a migration
-                dotnet ef migrations add NomeMigration */
+                dotnet ef migrations add NOMEMIGRATION --project Repositorio -- startup-project NOMEDOPROJETO
+            (por exemplo Entra21.CSharp.ClinicaVererinaria.Aplicacao) */
 
             /* 5ª etapa migration: A migration poderá ser aplicada de duas formas:
                 - executar o comando para aplicar a migration sem a necessidade de executar a aplicação

@@ -20,3 +20,4 @@ https://docs.microsoft.com/pt-br/ef/core/managing-schemas/migrations/?tabs=dotne
 
 instalar a ferramenta do dotnet ef core
 	dotnet tool install --global dotnet-ef
+
