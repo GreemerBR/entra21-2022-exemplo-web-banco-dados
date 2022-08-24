@@ -7,6 +7,7 @@ namespace Entra21.CSharp.ClinicaVeterinaria.Repositorio.BancoDados
     public class ClinicaVeterinariaContexto : DbContext
     {
         public DbSet<Raca> Racas { get; set; }
+        public DbSet<Veterinario> Veterinarios { get; set; }
 
         public ClinicaVeterinariaContexto(
             DbContextOptions<ClinicaVeterinariaContexto> options)
@@ -18,8 +19,9 @@ namespace Entra21.CSharp.ClinicaVeterinaria.Repositorio.BancoDados
         {
             // 3ª etapa migration: Registrar o mapeamento
             modelBuilder.ApplyConfiguration(new RacaMapeamento());
+            modelBuilder.ApplyConfiguration(new VeterinarioMapeamento());
             /* 4ª etapa migration: Gerar a migration
-                dotnet ef migrations add NOMEMIGRATION --project Repositorio -- startup-project NOMEDOPROJETO
+                dotnet ef migrations add NOMEMIGRATION --project Repositorio --startup-project NOMEDOPROJETO
             (por exemplo Entra21.CSharp.ClinicaVererinaria.Aplicacao) */
 
             /* 5ª etapa migration: A migration poderá ser aplicada de duas formas:
